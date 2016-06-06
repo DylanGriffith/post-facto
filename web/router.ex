@@ -19,8 +19,11 @@ defmodule PostFacto.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", PostFacto do
-  #   pipe_through :api
-  # end
+
+  scope "/api", PostFacto do
+    pipe_through :api
+    scope "/retros" do
+      post "/", RetrosController, :create
+    end
+  end
 end
